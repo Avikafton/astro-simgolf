@@ -1,11 +1,147 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forside</title>
+    <style>
+
+body {
+    margin: 0;
+    font-family: 'Aldrich', sans-serif;
+    color: white;
+    background: url('/baggrund.gif') no-repeat center center fixed;
+    background-size: cover;
+    }
+
+.hero {
+    text-align: center;
+    padding: 6rem 1rem 4rem;
+    position: relative;
+    }
+
+.hero img.figur-right {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 180px;
+    }
+    
+.hero img.golfmand-left {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 180px;
+    }
+      
+.hero-title {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    }
+      
+.subtext {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+      }
+      
+.section-title {
+    margin-top: 4rem;
+	text-align: center;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    }
+      
+.games-carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 2rem 1rem;
+    scroll-snap-type: x mandatory;
+    }
+      
+.game-card {
+    min-width: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    scroll-snap-align: center;
+    }
+      
+.concept-section {
+    margin: 4rem auto;
+    max-width: 1100px;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    }
+      
+.concept-section p {
+    line-height: 1.6;
+      }
+      
+.cta-wrap {
+    text-align: center;
+    margin-top: 2rem;
+    }
+    
+.cta-button {
+    background: none;
+    border: 2px solid #00eaff;
+    color: #00eaff;
+    padding: 0.8rem 2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.25s;
+    }
+      
+.cta-button:hover {
+    background: #00eaff;
+    color: black;
+    }
+      
+.footer {
+    margin-top: 4rem;
+    height: 80px;
+    background-image: url('/footer.png');
+    background-size: cover;
+    z-index: 100;
+    }
+</style>
+</head>
+
+  <body>
+	
+    <section class="hero">
+		<img src="/fugl.png" class="fugl-over" alt="fugl" />
+		<img src="/golfmand.png" class="figur-right" alt="Golfmand" />
+		<img src="/figur.png" class="golfmand-left" alt="Figur" />
+      <h1 class="hero-title">THE CLUBHOUSE</h1>
+      <p class="subtext">A simgames experience</p>
+    </section>
+
+    <h2 class="section-title">SPILOVERSIGT</h2>
+    <div class="games-carousel">
+      <div class="game-card"><img src="/game1.jpg" width="100%" /></div>
+      <div class="game-card"><img src="/game2.jpg" width="100%" /></div>
+      <div class="game-card"><img src="/game3.jpg" width="100%" /></div>
+      <div class="game-card"><img src="/game4.jpg" width="100%" /></div>
+      <div class="game-card"><img src="/game5.jpg" width="100%" /></div>
+    </div>
+
+    <h2 class="section-title">KONCEPT</h2>
+    <div class="concept-section">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo ligula eget dolor...</p>
+    </div>
+
+    <div class="cta-wrap">
+      <button class="cta-button">GAMES</button>
+    </div>
+
+    <div class="footer"></div>
+  </body>
+</html>
