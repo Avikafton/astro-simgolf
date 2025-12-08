@@ -1,0 +1,342 @@
+---
+
+---
+
+<head>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <section class="presentation-section">
+    <div class="info-box">
+      <div class="info-item">
+        <div class="info-header">
+          <span>Kickstarten - hvad går det ud på?</span>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed quos impedit ullam quisquam? Aspernatur consequuntur tempora sint corrupti deserunt ipsa eum? Ipsam nemo nihil itaque rem aut, a sequi, quis doloremque veritatis provident,
+            incidunt quam fuga! Asperiores error explicabo sapiente, hic saepe odit quidem nemo. Ducimus ratione modi minima hic?
+          </p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-header">
+          <span>Det får i med i pakken</span>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae assumenda at impedit, voluptatem ratione quisquam nemo quae quas excepturi odio ipsam praesentium facilis laboriosam molestiae alias consectetur voluptate quo velit porro
+            tenetur! Dolorem, aliquam vero, praesentium quia nisi eaque natus sed quae adipisci et, debitis tempore provident sequi porro quas.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-header">
+          <span>Brug for sparring? Vi står klar</span>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est praesentium explicabo repellat autem voluptatum. Ut quis magnam necessitatibus hic consectetur saepe in doloribus adipisci molestias. Repudiandae quo culpa pariatur labore
+            voluptatibus totam velit unde! Molestiae, iure hic! Maxime, itaque aut illo, minus non adipisci natus enim corrupti pariatur quisquam corporis!
+          </p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-header">
+          <span>Praktisk info før vi går i gang</span>
+          <button class="toggle-btn">+</button>
+        </div>
+        <div class="info-content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt provident maiores sapiente eaque deleniti fugiat quas, magni dolor delectus id quia repellendus minus enim voluptates neque rem ut culpa soluta tenetur harum? Magnam ipsam
+            magni adipisci vero, porro quae distinctio laborum animi itaque a natus id enim, maxime rerum quo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="calendar-section">
+    <div class="calendar-box">
+      <div class="calendar-header">
+        <div class="calendar-icon"><img src="/calender.webp" alt="Kalender" /></div>
+        <div class="calendar-header-text">
+          <span class="calendar-text">Kommende events</span>
+          <a href="https://www.instagram.com/simgolf/" target="_blank" class="insta-link"> Se mere på Instagram → </a>
+        </div>
+      </div>
+      <div class="calendar-content">
+        <div class="event-item">
+          <div class="event-date">Hver anden onsdag</div>
+          <div class="event-title">SimGirls</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">December</div>
+          <div class="event-title">Julekonkurrence</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Fredag d. 12. december</div>
+          <div class="event-title">Julegolf turnering</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Fredag d. 3. maj</div>
+          <div class="event-title">Simgolf Night Glow</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Hver torsdag</div>
+          <div class="event-title">After Work League</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Hver søndag</div>
+          <div class="event-title">Sunday Fun Day</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Lørdag d. 8. februar</div>
+          <div class="event-title">Par-mesterskabet</div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">Mandag d. 6. april</div>
+          <div class="event-title">Påske Challenge</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+      toggleButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const infoItem = button.closest(".info-item");
+          const content = infoItem.querySelector(".info-content");
+          const isActive = infoItem.classList.contains("active");
+
+          // Luk alle andre bokse
+          document.querySelectorAll(".info-item").forEach((item) => {
+            if (item !== infoItem) {
+              item.classList.remove("active");
+              item.querySelector(".toggle-btn").textContent = "+";
+            }
+          });
+
+          // Toggle aktiv status
+          if (isActive) {
+            content.classList.add("closing");
+            infoItem.classList.remove("active");
+            button.textContent = "+";
+
+            setTimeout(() => {
+              content.classList.remove("closing");
+            }, 300);
+          } else {
+            infoItem.classList.add("active");
+            button.textContent = "−";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Aldrich", sans-serif;
+    color: white;
+    background: url("/baggrund.gif") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+  .presentation-section {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 4rem;
+  }
+
+  .calendar-section {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .calendar-box {
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 18px;
+    padding: 2rem 2.5rem;
+    border: 2px solid white;
+    box-shadow: 0 0 50px #e803b2;
+    max-width: 900px;
+    width: 100%;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .calendar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .calendar-header-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .insta-link {
+    font-size: 0.9rem;
+    color: white;
+    opacity: 0.75;
+    text-decoration: none;
+    margin-top: 0.1rem;
+  }
+
+  .insta-link:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .calendar-content {
+    margin-top: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 0.75rem;
+  }
+
+  .event-date {
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  .event-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .calendar-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    margin-right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: black;
+  }
+
+  .calendar-text {
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .info-box {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 2px solid white;
+    box-shadow: 0 0 50px #e803b2;
+    max-width: 900px;
+    width: 100%;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .info-box h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .info-item {
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 1rem 0;
+  }
+
+  .info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .info-content {
+    margin-top: 0.5rem;
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .info-item.active .info-content {
+    display: block;
+  }
+
+  .info-content.closing {
+    opacity: 0;
+    transform: translateY(-10px);
+    max-height: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .toggle-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .info-item.active .toggle-btn {
+    transform: rotate(45deg);
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
