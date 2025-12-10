@@ -1,7 +1,3 @@
----
-
----
-
 <head>
   <meta charset="utf-8" />
 </head>
@@ -144,14 +140,19 @@
     });
   </script>
 </body>
-
 <style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
     font-family: "Aldrich", sans-serif;
     color: white;
     background: url("/baggrund.gif") no-repeat center center fixed;
     background-size: cover;
+    overflow-x: hidden;
   }
 
   .presentation-section {
@@ -191,6 +192,8 @@
     align-items: center;
     gap: 1rem;
     font-size: 1.6rem;
+    margin-top: 2rem;
+    padding-left: 1rem;
   }
 
   .calendar-header-text {
@@ -247,6 +250,11 @@
     justify-content: center;
     font-size: 2.2rem;
     color: black;
+  }
+  .calendar-icon img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .calendar-text {
@@ -337,6 +345,119 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll;
+    }
+
+    .presentation-section,
+    .calendar-section {
+      padding: 1.5rem 1rem;
+      margin-top: 2rem;
+    }
+
+    .info-box,
+    .calendar-box {
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 0 30px #e803b2;
+    }
+
+    .calendar-header {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      padding-left: 0;
+    }
+
+    .calendar-icon {
+      width: 48px;
+      height: 48px;
+      margin-right: 0.75rem;
+      font-size: 1.6rem;
+    }
+
+    .calendar-text {
+      font-size: 1.1rem;
+    }
+
+    .insta-link {
+      font-size: 0.8rem;
+    }
+
+    .calendar-content {
+      margin-top: 1rem;
+      gap: 0.75rem;
+    }
+
+    .event-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.1rem;
+      padding-top: 0.5rem;
+    }
+
+    .event-date {
+      font-size: 0.85rem;
+    }
+
+    .event-title {
+      font-size: 1rem;
+    }
+
+    .info-box h2 {
+      font-size: 1.3rem;
+    }
+
+    .info-header {
+      gap: 0.75rem;
+    }
+
+    .info-item {
+      padding: 0.75rem 0;
+    }
+
+    .info-content p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .presentation-section,
+    .calendar-section {
+      padding: 1.25rem 0.75rem;
+    }
+
+    .info-box,
+    .calendar-box {
+      padding: 1.25rem 1rem;
+    }
+
+    .calendar-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .calendar-icon {
+      margin-right: 0;
+    }
+
+    .calendar-text {
+      font-size: 1rem;
+    }
+
+    .event-title {
+      font-size: 0.95rem;
+    }
+
+    .event-date {
+      font-size: 0.8rem;
     }
   }
 </style>
