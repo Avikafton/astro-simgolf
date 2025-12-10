@@ -1,0 +1,185 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/footer.astro";
+
+// Supabase REST endpoint – make sure the table `games` exists
+// and has at least a column `image_url` (adjust field name below if needed)
+const endpoint = "https://wxjylkvjfnoijclnsffw.supabase.co/rest/v1/games?select=*";
+
+// Public anon/publishable key you gave
+const key = "sb_publishable_dRBm1ZfHY2t9q_m2tSbJQg_mhUMrYF9";
+
+const options = {
+  method: "GET",
+  headers: {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
+    "Content-Type": "application/json",
+  },
+};
+
+let games = [];
+let fetchError = "";
+
+try {
+  const response = await fetch(endpoint, options);
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Supabase fetch failed", response.status, errorText);
+    fetchError = `Supabase fetch failed: ${response.status} - ${errorText}`;
+  } else {
+    const data = await response.json();
+    console.log("Supabase games data", data);
+    games = data;
+  }
+} catch (err) {
+  console.error("Supabase fetch error", err);
+  fetchError = `Supabase fetch error: ${err}`;
+}
+---
+
+<Layout>
+  <Header />
+
+  <main class="games-page">
+    <section class="games-header">
+      <h1 class="games-title">GAMES</h1>
+      <p class="games-subtitle">In association with Trackman</p>
+      <div class="games-icon">⌛</div>
+    </section>
+
+    <section class="games-grid">
+      {
+        fetchError ? (
+          <p class="games-empty">{fetchError}</p>
+        ) : games.length === 0 ? (
+          <p class="games-empty">Der er ingen games endnu – tjek Supabase tabellen.</p>
+        ) : (
+          games.map((game) => {
+            const imgSrc = game.img;
+
+            if (!imgSrc) return null;
+
+            return (
+              <a href="#" class="game-card">
+                <img src={imgSrc} alt={game.title ?? "Game"} loading="lazy" />
+              </a>
+            );
+          })
+        )
+      }
+    </section>
+  </main>
+
+  <Footer />
+
+  <style>
+    :global(body) {
+      margin: 0;
+      font-family: "Aldrich", sans-serif;
+      color: white;
+      background: url("/baggrund.gif") no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    .games-page {
+      min-height: 100vh;
+      width: 100%;
+      padding: 16rem 1.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .games-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .games-title {
+      font-family: "ArcadeClassic", sans-serif;
+      font-size: clamp(2.8rem, 4vw, 3.6rem);
+      letter-spacing: 0.12em;
+      margin: 0;
+      text-transform: uppercase;
+      text-shadow: 0 0 14px rgba(255, 255, 255, 0.4);
+    }
+
+    .games-subtitle {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .games-icon {
+      margin-top: 1.8rem;
+      font-size: 2rem;
+    }
+
+    .games-grid {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.4rem;
+      justify-items: center;
+    }
+
+    .game-card {
+      width: 100%;
+      max-width: 230px;
+      aspect-ratio: 3 / 4;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.85));
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+      display: block;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.85);
+      opacity: 0.95;
+    }
+
+    .games-empty {
+      opacity: 0.8;
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 900px) {
+      .games-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .games-page {
+        padding-top: 7rem;
+      }
+
+      .games-grid {
+        gap: 1rem;
+      }
+
+      .game-card {
+        max-width: 200px;
+      }
+    }
+  </style>
+</Layout>
