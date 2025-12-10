@@ -22,6 +22,7 @@ import Logo from "../assets/logo.png";
         <a href="/kontakt">Kontakt</a>
         <a href="/booking">Booking</a>
         <a href="/om-os">Om os</a>
+        <a href="/prices">Priser</a>
       </div>
       <button class="close-btn" id="close-btn" type="button" aria-label="Luk menu">X</button>
     </div>
@@ -63,8 +64,9 @@ import Logo from "../assets/logo.png";
     width: 70px;
     height: auto;
     display: block;
+    margin-top: 2.5rem;
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.85)) drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
-    z-index: 1100;
+    z-index: 900;
     transition: transform 0.25s ease;
   }
 
@@ -84,6 +86,7 @@ import Logo from "../assets/logo.png";
     cursor: pointer;
     border: none;
     padding: 0;
+    margin-top: 4.5rem;
     background: transparent;
     display: flex;
     flex-direction: column;
@@ -137,6 +140,7 @@ import Logo from "../assets/logo.png";
       opacity 0.25s ease,
       transform 0.25s ease;
     font-family: "ArcadeClassic";
+    z-index: 1200;
   }
 
   .menu-row {
@@ -156,6 +160,7 @@ import Logo from "../assets/logo.png";
     gap: 2rem;
     justify-content: center;
     flex: 1;
+    padding-right: 10rem;
   }
 
   .menu-panel.active {
@@ -170,6 +175,16 @@ import Logo from "../assets/logo.png";
     letter-spacing: 2px;
     font-size: 1.4rem;
     display: inline-block;
+    transition:
+      transform 0.25s ease,
+      color 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .menu-panel a:hover {
+    transform: scale(1.12);
+    color: #ff7bf5;
+    opacity: 0.85;
   }
 
   .menu-panel a:hover {
@@ -201,7 +216,8 @@ import Logo from "../assets/logo.png";
 
   .close-btn:hover {
     transform: rotate(90deg) scale(1.15);
-    opacity: 0.8;
+    opacity: 0.9;
+    color: #ff7bf5; /* pink hover color */
   }
 
   @media (min-width: 900px) {
@@ -252,6 +268,16 @@ import Logo from "../assets/logo.png";
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape") {
+          closeMenu();
+        }
+      });
+
+      // Close menu when clicking outside of menu-panel and burger
+      document.addEventListener("click", (event) => {
+        const clickedInsideMenu = menu.contains(event.target);
+        const clickedBurger = burger.contains(event.target);
+
+        if (menu.classList.contains("active") && !clickedInsideMenu && !clickedBurger) {
           closeMenu();
         }
       });

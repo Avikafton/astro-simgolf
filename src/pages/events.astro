@@ -1,8 +1,12 @@
-<head>
-  <meta charset="utf-8" />
-</head>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-<body>
+<Layout>
+  <section class="events-header">
+    <h1 class="events-title">EVENTS</h1>
+    <p class="events-subtitle">fra pre-party til skræddersyede events</p>
+  </section>
   <section class="presentation-section">
     <div class="info-box">
       <div class="info-item">
@@ -139,20 +143,21 @@
       });
     });
   </script>
-</body>
+</Layout>
 <style>
   *,
   *::before,
   *::after {
     box-sizing: border-box;
   }
-  body {
+  :global(body) {
     margin: 0;
     font-family: "Aldrich", sans-serif;
     color: white;
     background: url("/baggrund.gif") no-repeat center center fixed;
     background-size: cover;
     overflow-x: hidden;
+    margin-top: 10rem;
   }
 
   .presentation-section {
@@ -337,6 +342,29 @@
     transform: rotate(45deg);
   }
 
+  .events-header {
+    text-align: center;
+    margin-top: 15rem;
+    margin-bottom: 2rem;
+  }
+
+  .events-title {
+    font-family: "ArcadeClassic", sans-serif;
+    font-size: 3.2rem;
+    letter-spacing: 0.1em;
+    margin: 0;
+    color: white;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  }
+
+  .events-subtitle {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0.85;
+    color: white;
+    font-family: "Aldrich", sans-serif;
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -349,7 +377,7 @@
   }
 
   @media (max-width: 768px) {
-    body {
+    :global(body) {
       background-attachment: scroll;
     }
 
