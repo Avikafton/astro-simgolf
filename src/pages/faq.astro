@@ -213,6 +213,8 @@ import Layout from "../layouts/Layout.astro";
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease;
+    animation: floaty 4s ease-in-out infinite;
+    transform-origin: center;
   }
 
   .info-box h2 {
@@ -278,6 +280,18 @@ import Layout from "../layouts/Layout.astro";
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes floaty {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0px);
     }
   }
 

@@ -167,6 +167,8 @@ import Layout from "../layouts/Layout.astro";
     align-items: flex-start;
     width: 100%;
     margin-top: 4rem;
+    animation: floaty 4s ease-in-out infinite;
+    transform-origin: center;
   }
 
   .calendar-section {
@@ -176,6 +178,8 @@ import Layout from "../layouts/Layout.astro";
     align-items: flex-start;
     width: 100%;
     margin-top: 2rem;
+    animation: floaty 4s ease-in-out infinite;
+    transform-origin: center;
   }
 
   .calendar-box {
@@ -373,6 +377,18 @@ import Layout from "../layouts/Layout.astro";
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes floaty {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0px);
     }
   }
 
