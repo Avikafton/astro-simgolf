@@ -40,8 +40,6 @@ try {
 ---
 
 <Layout>
-  <Header />
-
   <main class="games-page">
     <section class="games-header">
       <h1 class="games-title">GAMES</h1>
@@ -75,12 +73,24 @@ try {
   <Footer />
 
   <style>
-    :global(body) {
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    :global(html, body) {
       margin: 0;
+      min-height: 100%;
+      background-color: #000;
+    }
+
+    :global(body) {
       font-family: "Aldrich", sans-serif;
       color: white;
-      background: url("/baggrund.gif") no-repeat center center fixed;
+      background: #000 url("/baggrund.gif") no-repeat center top;
       background-size: cover;
+      background-attachment: fixed;
       overflow-x: hidden;
     }
 
@@ -125,7 +135,7 @@ try {
       max-width: 1100px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.4rem;
+      gap: 2.6rem;
       justify-items: center;
     }
 
@@ -133,15 +143,22 @@ try {
       width: 100%;
       max-width: 230px;
       aspect-ratio: 3 / 4;
-      border-radius: 18px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.85));
+      position: relative;
+      background: radial-gradient(circle at top, rgba(120, 40, 200, 0.75), rgba(5, 8, 30, 0.98));
+      box-shadow:
+        0 0 18px rgba(232, 3, 178, 0.5),
+        0 0 32px rgba(0, 200, 255, 0.35),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
       transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        opacity 0.25s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease,
+        opacity 0.3s ease;
       display: block;
+      filter: drop-shadow(0 0 12px rgba(120, 0, 255, 0.4));
+      animation: floaty 4s ease-in-out infinite;
     }
 
     .game-card img {
@@ -152,9 +169,24 @@ try {
     }
 
     .game-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.85);
-      opacity: 0.95;
+      transform: translateY(-14px) scale(1.05) rotateZ(-1.5deg);
+      box-shadow:
+        0 0 35px rgba(232, 3, 178, 0.9),
+        0 0 60px rgba(0, 220, 255, 0.65),
+        inset 0 0 32px rgba(255, 255, 255, 0.25);
+      filter: drop-shadow(0 0 28px rgba(170, 0, 255, 0.75));
+      opacity: 1;
+    }
+    @keyframes floaty {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .games-empty {
@@ -169,16 +201,12 @@ try {
     }
 
     @media (max-width: 768px) {
-      .games-page {
-        padding-top: 7rem;
+      :global(body) {
+        background-attachment: scroll;
       }
 
       .games-grid {
         gap: 1rem;
-      }
-
-      .game-card {
-        max-width: 200px;
       }
     }
   </style>
